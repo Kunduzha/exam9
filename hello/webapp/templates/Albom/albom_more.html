@@ -31,6 +31,14 @@
 {% if user.is_authenticated %}
     <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "see_fotos" albom.pk %}"> Все фото альбома</a></div></div>
 {% endif %}
+          {% if comment.pk not in likes_comments %}
+    <a data-comment_counter="comment_counter{{ comment.pk }}" onclick="likeComment(event)" href="{% url 'article:like_comment' comment.pk %}"><i class="bi bi-heart"></i></a>
+    {% else %}
+    <a data-comment_counter="comment_counter{{ comment.pk }}" onclick="unlikeComment(event)"  href="{% url 'article:unlike_comment' comment.pk %}"><i class="bi bi-heart-fill"></i></a>
+    {% endif %}
+    <p id="comment_counter{{ comment.pk }}">{{ comment.like_comment.count }}</p>
+        <div>
+
 
 {% endblock content %}
 

@@ -42,3 +42,50 @@ class Gallery(models.Model):
         return f'{self.id}. {self.caption}'
 
 
+class ChoiceAlbom(models.Model):
+    albom = models.ForeignKey(
+        'webapp.Albom',
+        on_delete=models.CASCADE,
+        related_name='choice_albom',
+        verbose_name='Альбом',
+        null=False,
+        blank=False)
+
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='user_choice_albom'
+    )
+
+    class Meta:
+        db_table = 'choice_albom'
+        verbose_name = 'choice'
+        verbose_name_plural = 'choices'
+
+    def __str__(self):
+        return f'{self.albom}: {self.user}'
+
+class ChoiceGallery(models.Model):
+        gallery = models.ForeignKey(
+            'webapp.Gallery',
+            on_delete=models.CASCADE,
+            related_name='choice_gallery',
+            verbose_name='фото',
+            null=False,
+            blank=False)
+
+        user = models.ForeignKey(
+            get_user_model(),
+            on_delete=models.SET_NULL,
+            null=True,
+            related_name='user_choice_gallery'
+        )
+
+        class Meta:
+            db_table = 'choice_gallery'
+            verbose_name = 'choice'
+            verbose_name_plural = 'choices'
+
+        def __str__(self):
+            return f'{self.gallery}: {self.user}'

@@ -1,7 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseForbidden, HttpResponse
 from django.utils.http import urlencode
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic.base import View
+
 from webapp.forms import AlbomForms, SimpleSearchForm
 from webapp.models import Albom, Gallery
 from django.urls import reverse_lazy
@@ -86,3 +89,31 @@ class AlbomDelete(LoginRequiredMixin, DeleteView):
     model = Albom
     context_object_name = 'alboms'
     success_url = reverse_lazy('main_page')
+
+
+
+class ChoiceForAlbom(LoginRequiredMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        albom = get_object_or_404(Albom, pk=self.kwargs.get('pk'))
+        user = request.user
+        try:
+            ChoiceForAlbom.objects.get(albom=albom, user=user)
+            return HttpResponseForbidden("error")
+        except ChoiceForAlbom.DoesNotExist:
+            ChoiceForAlbom.objects.create(albom=albom, user=user)
+        return HttpResponse(albom.choice_albom)
+
+
+
+
+class UnChoiceForAlbom(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        albom = get_object_or_404(Albom, pk=self.kwargs.get('pk'))
+        user = request.user
+        try:
+            choice = ChoiceForAlbom.objects.get(albom=albom, user=user)
+            choice.delete()
+            return HttpResponse(albom.choice_albom)
+        except ChoiceForAlbom.DoesNotExist:
+            return HttpResponseForbidden("error")
