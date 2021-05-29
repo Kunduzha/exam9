@@ -29,15 +29,17 @@
         <div>data: {{ albom.created_at }} </div>
         <div>author: {{ albom.user }} </div>
         <div>description: {{ albom.description }} </div>
+                 {% if albom.pk not in choices_alboms %}
+    <a id="albom_choice{{ albom.pk }}" onclick="choiceAlbom(event)" href="{% url 'choice_albom' albom.pk %}"><i class="bi bi-bookmark"></i></a>
+    {% else %}
+    <a id="albom_unchoice{{ albom.pk }}" onclick="unchoiceAlbom(event)"  href="{% url 'unchoice_albom' albom.pk %}"><i class="bi bi-bookmark-fill"></i></a>
+    {% endif %}
+
 {% endfor %}
 
 
     {% endif %}
-
-{% endblock content %}
-
-
- {% if user.is_authenticated and perms.webapp.change_albom %}
+     {% if user.is_authenticated and perms.webapp.change_albom %}
      <a href="{% url 'change_albom' alboms.pk %}">update</a>
 
 {% endif %}
@@ -49,3 +51,8 @@
 
 
     </div>
+
+{% endblock content %}
+
+
+

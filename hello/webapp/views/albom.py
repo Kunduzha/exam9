@@ -10,6 +10,7 @@ from webapp.models import Albom, Gallery
 from django.urls import reverse_lazy
 from django.db.models import Q
 
+from webapp.views.gallery import ChoiceForGallery
 
 
 class IndexViewAlbom(ListView):
@@ -30,8 +31,20 @@ class IndexViewAlbom(ListView):
         context['form'] = self.form
         if self.search_value:
             context['query'] = urlencode({'search': self.search_value})
-        return context
 
+        choices_alboms = []
+        gallery_choice = []
+        if self.request.user.is_authenticated:
+            choices = ChoiceForAlbom.objects.filter(user=self.request.user)
+            choices_gallery = ChoiceForGallery.objects.filter(user = self.request.user)
+            for choice in choices:
+                choices_alboms.append(choice.albom.pk)
+            for choice_gallery in choices_gallery:
+                gallery_choice.append(choice_gallery.gallery.pk)
+
+        context['choices_alboms'] = choices_alboms
+        context['choices_gallery'] = gallery_choice
+        return context
     def get_queryset(self):
         queryset = super().get_queryset()
         if self.search_value:

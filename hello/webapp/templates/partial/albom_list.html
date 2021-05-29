@@ -8,10 +8,10 @@
             | {{ article.created_at|date:"d.m.Y H:i:s" }}
         </p>
     <p>
-        {% if albom.pk not in choice_alboms %}
-    <a data-article_counter="albom_choice{{ albom.pk }}" onclick="choice(event)" href="{% url 'choice_albom' albom.pk %}"><i class="bi bi-bookmark"></i></a>
+        {% if albom.pk not in choices_alboms %}
+    <a id="albom_choice{{ albom.pk }}" onclick="choiceAlbom(event)" href="{% url 'choice_albom' albom.pk %}"><i class="bi bi-bookmark"></i></a>
     {% else %}
-    <a data-article_counter="albom_choice{{ albom.pk }}" onclick="unchoice(event)"  href="{% url 'unchoice_albom' albom.pk %}"><i class="bi bi-bookmark-fill"></i></a>
+    <a id="albom_unchoice{{ albom.pk }}" onclick="unchoiceAlbom(event)"  href="{% url 'unchoice_albom' albom.pk %}"><i class="bi bi-bookmark-fill"></i></a>
     {% endif %}
 
 

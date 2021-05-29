@@ -77,7 +77,7 @@ class DeleteGallery(PermissionRequiredMixin, DeleteView):
 
 
 
-class LikeForComment(LoginRequiredMixin, View):
+class ChoiceForGallery(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         gallery = get_object_or_404(Gallery, pk=self.kwargs.get('pk'))
         user = request.user

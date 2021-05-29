@@ -19,8 +19,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 
-from webapp.views import GalleryMore, GalleryAdd, GalleryChange, DeleteGallery, IndexViewGallery
-from webapp.views import IndexViewAlbom, AlbomMore, AlbomChange, AlbomDelete, AlbomAdd
+from webapp.views import GalleryMore, GalleryAdd, GalleryChange, DeleteGallery, IndexViewGallery, ChoiceGallery, UnChoiceForGallery
+from webapp.views import IndexViewAlbom, AlbomMore, AlbomChange, AlbomDelete, AlbomAdd, ChoiceForAlbom, UnChoiceForAlbom
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexViewAlbom.as_view(), name='main_page'),
@@ -34,5 +34,9 @@ urlpatterns = [
     path('delete_foto/<int:pk>/', DeleteGallery.as_view(), name='delete_foto'),
     path('update/<int:pk>/', GalleryChange.as_view(), name='update_foto'),
     path('more_foto/<int:pk>/', AlbomMore.as_view(), name='see_foto'),
+    path('<int:pk>/choice_gallery', ChoiceGallery.as_view(), name='choice_gallery'),
+    path('<int:pk>/unchoice_gallery', UnChoiceForGallery.as_view(), name='unchoice_gallery'),
+    path('<int:pk>/choice_albom', ChoiceForAlbom.as_view(), name='choice_albom'),
+    path('<int:pk>/unchoice_albom', UnChoiceForAlbom.as_view(), name='unchoice_albom'),
     path('accounts/', include('accounts.urls')),
 ]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
