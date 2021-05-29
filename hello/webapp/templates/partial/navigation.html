@@ -1,0 +1,20 @@
+{#<li><a href="{% url "main_page" %}">список задач</a></li>#}
+{#<li><a href="{% url "adding_list" %}"> добавить задачку</a></li>#}
+
+<div class="row mx-md-n5">
+    {% if user.is_authenticated %}
+     <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "account:logout" %}">Выход</a></div></div>
+    {% else %}
+     <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "account:login" %}">Вход</a></div></div>
+     <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "account:registration" %}">Регистрация</a></div></div>
+    {% endif %}
+  <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "main_page" %}">список товаров</a></div></div>
+{% if perms.webapp.add_goods %}
+  <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "add_gallery" %}"> добавить товар</a></div></div>
+{% endif %}
+{#{% if perms.webapp.change_review %}#}
+{#            <a href="{% url 'unmoderated_reviews' %}">Немодерированные комментарии!!! </a>#}
+
+{#{% endif %}#}
+
+</div>

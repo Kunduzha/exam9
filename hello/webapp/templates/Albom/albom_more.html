@@ -1,0 +1,34 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block menu %}
+{#    {% if perms.webapp.add_goods %}#}
+{#    <li><a href="{% url "add_good" %}">Добавить товар</a></li>#}
+{#    {% endif %}#}
+{#{% if perms.webapp.change_goods %}#}
+{#    <li><a href="{% url "change_good" goods.pk%}">Изменить товар</a></li>#}
+{#    {% endif %}#}
+{#{% if perms.webapp.delete_goods %}#}
+{#    <li><a href="{% url "del_good" goods.pk %}">Удалить товар</a></li>#}
+{#    {% endif %}#}
+{% endblock menu %}
+{% block page_header %}Альбом {{ goods.id }}{% endblock page_header %}
+{% block content %}
+     <div>
+    Название: {{ albom.name }}
+    </div>
+    <div>
+    статус: {{ albom.status }}
+    </div>
+    <div>
+    Описание: {{ albom.description }}
+    </div>
+
+
+{% if user.is_authenticated %}
+    <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "adding_foto" albom.pk %}"> добавить фото</a></div></div>
+{% endif %}
+ {% include 'Galery/index.html' %}
+
+{% endblock content %}
+

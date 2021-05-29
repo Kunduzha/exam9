@@ -1,0 +1,10 @@
+
+{% extends 'base.html' %}
+
+{% block page_header %}Добавить товар{% endblock page_header %}
+
+{% block content %}
+    <form action="{% url "adding_foto"  %}" method="post">
+        {% include "partial/base_form.html" with button_text="Добавить фото" %}
+    </form>
+{% endblock content %}

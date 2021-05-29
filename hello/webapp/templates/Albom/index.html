@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{#{% block menu %}<li><a href="{% url "add_good" %}">Добавить товар</a></li>{% endblock menu %}#}
+{% block title %}Все альбомы{% endblock title %}
+{% block page_header %}альбомы{% endblock page_header %}
+{% block content %}
+    <div >
+
+
+        {% if not alboms %}
+            <h1>Нет Альбомов</h1>
+        {% else %}
+
+            {% include 'Galery/../partial/simple_search.html' %}
+
+
+            {% if is_paginated %}
+
+                 {% include 'Galery/pagination.html' %}
+                {% endif %}
+
+         {% for albom in alboms %}
+
+        <div>id: {{ albom.id }} </div>
+<div>
+
+    </div>
+        <div>name: <a href="{% url "see_albom" albom.id %}">{{albom.name }}</a> </div>
+        <div>data: {{ albom.created_at }} </div>
+        <div>author: {{ albom.user }} </div>
+        <div>description: {{ albom.description }} </div>
+{% endfor %}
+
+
+    {% endif %}
+
+{% endblock content %}
+
+
+ {% if user.is_authenticated and perms.webapp.change_albom %}
+     <a href="{% url 'change_albom' alboms.pk %}">update</a>
+
+{% endif %}
+
+                {% if user.is_authenticated and perms.webapp.delete_albom %}
+
+                     <a href="{% url 'del_albom' alboms.pk %}">remove</a>
+                {% endif %}
+
+
+    </div>

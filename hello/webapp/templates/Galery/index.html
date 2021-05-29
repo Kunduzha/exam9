@@ -1,0 +1,51 @@
+<div>
+
+{#{% block menu %}<li><a href="{% url "add_good" %}">Добавить товар</a></li>{% endblock menu %}#}
+{% block title %}Все фотографии{% endblock title %}
+{% block page_header %}Фотографии{% endblock page_header %}
+{% block content %}
+    {% if not galleries %}
+        <h2>Нету фотографий</h2>
+
+    {% else %}
+
+
+            {% include 'Galery/../partial/simple_search.html' %}
+
+
+            {% if is_paginated %}
+
+                 {% include 'Galery/pagination.html' %}
+                {% endif %}
+
+         {% for gallery in galleries %}
+
+        <div>id: {{ gallery.id }} </div>
+<div>
+        {% if gallery.image %}
+        <img src="{{ gallery.image.url }}" alt="">
+
+{% endif %}
+    </div>
+        <div>caption: <a href="{% url "see_foto" gallery.id %}">{{ gallery.caption }}</a> </div>
+        <div>data: {{ gallery.created_at }} </div>
+        <div>author: {{ gallery.user }} </div>
+
+
+             {% if perms.webapp.add_gallery %}
+    <li><a href="{% url "adding_foto" %}">Добавить фото</a></li>
+    {% endif %}
+{% if perms.webapp.change_goods %}
+    <li><a href="{% url "update_foto" gallery.pk%}">Изменить фото</a></li>
+    {% endif %}
+{% if perms.webapp.delete_gallery %}
+    <li><a href="{% url "delete_foto" gallery.pk %}">Удалить фото</a></li>
+    {% endif %}
+{% endfor %}
+
+
+    {% endif %}
+
+{% endblock content %}
+
+</div>

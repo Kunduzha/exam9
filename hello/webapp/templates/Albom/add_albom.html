@@ -1,0 +1,10 @@
+{% extends 'partial/../base.html' %}
+{% block content %}
+    <a href="{% url "main_page" %}">На список альбомов</a>
+
+    <form action="" method="post">
+        {% include "partial/base_form.html" with button_text="Create"%}
+    </form>
+
+
+{% endblock content %}

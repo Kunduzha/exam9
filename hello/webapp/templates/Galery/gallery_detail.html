@@ -1,0 +1,40 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block menu %}
+    {% if perms.webapp.add_gallery %}
+    <li><a href="{% url "adding_foto" %}">Добавить фото</a></li>
+    {% endif %}
+{% if perms.webapp.change_goods %}
+    <li><a href="{% url "update_foto" gallery.pk%}">Изменить фото</a></li>
+    {% endif %}
+{% if perms.webapp.delete_gallery %}
+    <li><a href="{% url "delete_foto" gallery.pk %}">Удалить фото</a></li>
+    {% endif %}
+{% endblock menu %}
+{% block page_header %}Фото {{ gallery.id }}{% endblock page_header %}
+{% block content %}
+
+    <div>
+        {% if gallery.image %}
+        <img src="{{ gallery.image.url }}" alt="">
+
+{% endif %}
+    </div>
+         <div>
+    Автор: {{ gallery.user }}
+    </div>
+    <div>
+    Подпись: {{ gallery.caption }}
+    </div>
+    <div>
+    Дата: {{ gallery.created_at }}
+    </div>
+{##}
+{#{% if user.is_authenticated %}#}
+{#    <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "adding_review" gallery.pk %}"> добавить в альбом</a></div></div>#}
+{#{% endif %}#}
+{# {% include 'Review/index.html' %}#}
+{#    <h3>Rating: {{ goods.avr_rating.rating|default:0 }}</h3>#}
+{% endblock content %}
+

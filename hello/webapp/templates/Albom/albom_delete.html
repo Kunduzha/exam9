@@ -1,0 +1,13 @@
+{% extends "partial/../base.html" %}
+{% block title %} Удалить альбом{% endblock %}
+{% block menu %}
+    <li><a href="{% url 'main_page'%}">Назад</a></li>
+{% endblock %}
+{% block content %}
+    <h1>Точно хотите удалить? </h1>
+    <form method="POST" action="{% url "del_albom" alboms.pk %}" class="text-center">
+        {% csrf_token %}
+        <p><input type="submit" value="Подтвердить!"></p>
+        <p><a href="{% url "see_albom" alboms.pk%}">Cancel</a></p>
+    </form>
+{% endblock %}
