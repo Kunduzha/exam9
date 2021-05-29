@@ -12,7 +12,7 @@
 {#    <li><a href="{% url "del_good" goods.pk %}">Удалить товар</a></li>#}
 {#    {% endif %}#}
 {% endblock menu %}
-{% block page_header %}Альбом {{ goods.id }}{% endblock page_header %}
+{% block page_header %}Альбом {{ albom.id }}{% endblock page_header %}
 {% block content %}
      <div>
     Название: {{ albom.name }}
@@ -28,7 +28,9 @@
 {% if user.is_authenticated %}
     <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "adding_foto" albom.pk %}"> добавить фото</a></div></div>
 {% endif %}
- {% include 'Galery/index.html' %}
+{% if user.is_authenticated %}
+    <div class="col px-md-5"><div class="p-3 border bg-light"><a href="{% url "see_fotos" albom.pk %}"> Все фото альбома</a></div></div>
+{% endif %}
 
 {% endblock content %}
 

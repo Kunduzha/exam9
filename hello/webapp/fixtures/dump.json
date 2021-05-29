@@ -1,0 +1,125 @@
+[
+{
+  "model": "webapp.albom",
+  "pk": 1,
+  "fields": {
+    "name": "Семейные фото",
+    "description": "оалджфоывдлжао",
+    "user": 1,
+    "created_at": "2021-05-04T06:00:00Z",
+    "status": "public"
+  }
+},
+{
+  "model": "webapp.albom",
+  "pk": 2,
+  "fields": {
+    "name": "Природа",
+    "description": "оанннннннннннннн",
+    "user": 1,
+    "created_at": "2021-05-29T09:21:53Z",
+    "status": "public"
+  }
+},
+{
+  "model": "webapp.albom",
+  "pk": 3,
+  "fields": {
+    "name": "Дети",
+    "description": "оооооооооооооооооо",
+    "user": null,
+    "created_at": "2020-01-01T00:00:00Z",
+    "status": "public"
+  }
+},
+{
+  "model": "webapp.gallery",
+  "pk": 1,
+  "fields": {
+    "image": "images/unnamed.jpg",
+    "caption": "сакура",
+    "created_at": "2021-05-29T06:35:47.978Z",
+    "user": 1,
+    "albom": null,
+    "status": "публичная"
+  }
+},
+{
+  "model": "webapp.gallery",
+  "pk": 2,
+  "fields": {
+    "image": "images/original.jpeg",
+    "caption": "море",
+    "created_at": "2021-05-29T06:36:07.814Z",
+    "user": 1,
+    "albom": null,
+    "status": "публичная"
+  }
+},
+{
+  "model": "webapp.gallery",
+  "pk": 3,
+  "fields": {
+    "image": "images/e2f1fb8c13410254.jpg",
+    "caption": "Красотааа",
+    "created_at": "2021-05-29T06:36:26.160Z",
+    "user": 1,
+    "albom": null,
+    "status": "публичная"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$mQgaqeFjgrYLgo5NmoVCHR$5dHZbCcVQmLWb7zRFZaLOi1nLC2gNtCe1xMBCyGqLXw=",
+    "last_login": "2021-05-29T06:34:55.283Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "kuzanai@mail.ru",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-05-29T06:34:30.519Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$XWfLlfRVywxuAmT0AfGk6C$meEpCdxq/zisgcc5D7F/2ALspVqnw50fvd7BKgNapJg=",
+    "last_login": "2021-05-29T10:48:37.949Z",
+    "is_superuser": false,
+    "username": "111",
+    "first_name": "111",
+    "last_name": "111",
+    "email": "kuzanai@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-05-29T10:48:37.767Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$GGxxRpKDDO6wsLradykVTR$z6KkjFTGa0eLMVlrICDPjmaWyWxnP11hnXPNA/UBunM=",
+    "last_login": "2021-05-29T10:50:12.623Z",
+    "is_superuser": false,
+    "username": "222",
+    "first_name": "222",
+    "last_name": "222",
+    "email": "kuzanai@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-05-29T10:50:12.462Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

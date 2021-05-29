@@ -55,14 +55,13 @@ class AlbomMore(DetailView):
         user = self.request.user
         if user.is_authenticated and user.groups.filter(name='moderator').exists():
             kwargs['galleries'] = Gallery.objects.filter(gallery__pk=self.get_object().pk)
-        else:
-            kwargs['galleries'] = Gallery.objects.filter(status__in='public', good__pk=self.get_object().pk)
+
         return super().get_context_data(**kwargs)
 
 
 
 class AlbomAdd(LoginRequiredMixin, CreateView):
-    template_name = 'Albom/good_add.html'
+    template_name = 'Albom/add_albom.html'
     model = Albom
     form_class = AlbomForms
 

@@ -5,7 +5,7 @@
     {% if perms.webapp.add_gallery %}
     <li><a href="{% url "adding_foto" %}">Добавить фото</a></li>
     {% endif %}
-{% if perms.webapp.change_goods %}
+{% if perms.webapp.add_gallery%}
     <li><a href="{% url "update_foto" gallery.pk%}">Изменить фото</a></li>
     {% endif %}
 {% if perms.webapp.delete_gallery %}

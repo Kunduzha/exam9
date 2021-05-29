@@ -8,41 +8,44 @@ from django.urls import reverse_lazy
 from django.db.models import Q
 
 
-
 class IndexViewGallery(ListView):
-    model = Gallery
     template_name = 'Galery/index.html'
+    model = Gallery
     context_object_name = 'galleries'
-    paginate_by = 3
-    paginate_orphans = 1
-
-
-    def get(self, request, *args, **kwargs):
-        self.form = self.get_search_form()
-        self.search_value = self.get_search_value()
-        return super().get(request, *args, **kwargs)
-
-    def get_context_data(self, *args, object_list = None, **kwargs):
-        context = super().get_context_data(object_list= object_list, **kwargs)
-        context['form'] = self.form
-        if self.search_value:
-            context['query'] = urlencode({'search': self.search_value})
-        return context
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        if self.search_value:
-            query = Q(caption__icontains=self.search_value)
-            queryset = queryset.filter(query)
-        return queryset.order_by('-created_at')
-
-    def get_search_form(self):
-        return SimpleSearchForm(self.request.GET)
-
-    def get_search_value(self):
-        if self.form.is_valid():
-            return self.form.cleaned_data['search']
-        return None
+# class IndexViewGallery(ListView):
+#     model = Gallery
+#     template_name = 'Galery/index.html'
+#     context_object_name = 'galleries'
+#     paginate_by = 3
+#     paginate_orphans = 1
+#
+#
+#     def get(self, request, *args, **kwargs):
+#         self.form = self.get_search_form()
+#         self.search_value = self.get_search_value()
+#         return super().get(request, *args, **kwargs)
+#
+#     def get_context_data(self, *args, object_list = None, **kwargs):
+#         context = super().get_context_data(object_list= object_list, **kwargs)
+#         context['form'] = self.form
+#         if self.search_value:
+#             context['query'] = urlencode({'search': self.search_value})
+#         return context
+#
+#     def get_queryset(self):
+#         queryset = super().get_queryset()
+#         if self.search_value:
+#             query = Q(caption__icontains=self.search_value)
+#             queryset = queryset.filter(query)
+#         return queryset.order_by('-created_at')
+#
+#     def get_search_form(self):
+#         return SimpleSearchForm(self.request.GET)
+#
+#     def get_search_value(self):
+#         if self.form.is_valid():
+#             return self.form.cleaned_data['search']
+#         return None
 
 
 
@@ -70,12 +73,12 @@ class GalleryAdd(LoginRequiredMixin, CreateView):
     #     return reverse(Gallery, kwargs = {'pk': self.object.pk})
 
     def form_valid(self, form):
-        albom = get_object_or_404(Gallery, pk=self.kwargs.get('pk'))
+        albom = get_object_or_404(Albom, pk=self.kwargs.get('pk'))
         gallery = form.save(commit=False)
         gallery.albom = albom
         gallery.user = self.request.user
         gallery.save()
-        return redirect('see_gallery', pk=albom.pk)
+        return redirect('see_albom', pk=albom.pk)
 
 class GalleryChange(PermissionRequiredMixin, UpdateView):
     model = Gallery

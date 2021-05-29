@@ -25,7 +25,7 @@
     <p>Почта: {{ user_obj.email }}</p>
     <p>О себе: {{ user_obj.profile.about_me }}</p>
     <h2 class="text-center clear">Статьи автора:</h2>
-    {{ user_obj.review.all }}
-{#    {% include 'partial/project_list.html' %}#}
+    {{ user_obj.albom.all }}
+   {% include 'partial/albom_list.html' %}
 {% endblock %}
 

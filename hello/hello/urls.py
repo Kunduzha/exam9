@@ -19,12 +19,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 
-from webapp.views import GalleryMore, GalleryAdd, GalleryChange, DeleteGallery
+from webapp.views import GalleryMore, GalleryAdd, GalleryChange, DeleteGallery, IndexViewGallery
 from webapp.views import IndexViewAlbom, AlbomMore, AlbomChange, AlbomDelete, AlbomAdd
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexViewAlbom.as_view(), name='main_page'),
+    # path('more/<int:pk>/', Good_more.as_view(), name='see_good'),
     path('more/<int:pk>/', AlbomMore.as_view(), name='see_albom'),
+    path('fotos/<int:pk>/', IndexViewGallery.as_view(), name='see_fotos'),
     path('add/', AlbomAdd.as_view(), name='add_albom'),
     path('edit/<int:pk>/', AlbomChange.as_view(), name='change_albom'),
     path('delete/<int:pk>/', AlbomDelete.as_view(), name='del_albom'),

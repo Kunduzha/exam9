@@ -1,22 +1,14 @@
-<div>
+{% extends 'base.html' %}
 
-{#{% block menu %}<li><a href="{% url "add_good" %}">Добавить товар</a></li>{% endblock menu %}#}
-{% block title %}Все фотографии{% endblock title %}
-{% block page_header %}Фотографии{% endblock page_header %}
+
 {% block content %}
+
+
     {% if not galleries %}
         <h2>Нету фотографий</h2>
 
     {% else %}
 
-
-            {% include 'Galery/../partial/simple_search.html' %}
-
-
-            {% if is_paginated %}
-
-                 {% include 'Galery/pagination.html' %}
-                {% endif %}
 
          {% for gallery in galleries %}
 
@@ -35,7 +27,7 @@
              {% if perms.webapp.add_gallery %}
     <li><a href="{% url "adding_foto" %}">Добавить фото</a></li>
     {% endif %}
-{% if perms.webapp.change_goods %}
+{% if perms.webapp.change_gallery %}
     <li><a href="{% url "update_foto" gallery.pk%}">Изменить фото</a></li>
     {% endif %}
 {% if perms.webapp.delete_gallery %}
@@ -46,6 +38,5 @@
 
     {% endif %}
 
-{% endblock content %}
 
-</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+
+{% for albom in albom %}
+    <div class="box">
+        <h3><a href="{% url "see_albom" albom.pk %}">{{ albom.name }}</a></h3>
+
+        <p>
+            <a href="{% url 'accounts:user-detail' albom.user_id %}">{{ albom.user }}</a>
+            | {{ article.created_at|date:"d.m.Y H:i:s" }}
+        </p>
+    <p>
+        {% if albom.pk not in choice_alboms %}
+    <a data-article_counter="albom_choice{{ albom.pk }}" onclick="choice(event)" href="{% url 'choice_albom' albom.pk %}"><i class="bi bi-bookmark"></i></a>
+    {% else %}
+    <a data-article_counter="albom_choice{{ albom.pk }}" onclick="unchoice(event)"  href="{% url 'unchoice_albom' albom.pk %}"><i class="bi bi-bookmark-fill"></i></a>
+    {% endif %}
+
+
+{% empty %}
+    <h2 class="text-center">Нет статей</h2>
+{% endfor %}

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from webapp.models import Gallery
+from webapp.models import Gallery, Albom
 
 
 class GalleryAdmin(admin.ModelAdmin):
@@ -14,3 +14,4 @@ class GalleryAdmin(admin.ModelAdmin):
 
 admin.site.register(Gallery, GalleryAdmin)
 
+admin.site.register(Albom)

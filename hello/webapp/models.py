@@ -9,7 +9,7 @@ status_choice = [('public', 'публичная'), ('private', 'приватна
 class Albom(models.Model):
     name = models.CharField(max_length=150, null=False, blank=False, verbose_name='название')
     description = models.TextField(null=True, blank=True, verbose_name='Описание')
-    author = models.ForeignKey(get_user_model(),  on_delete=models.SET_NULL, null=True, related_name='alboms')
+    user = models.ForeignKey(get_user_model(),  on_delete=models.SET_NULL, null=True, related_name='alboms')
     created_at = models.DateTimeField(null=True, blank=True)
     status = models.CharField(max_length=50, null=False, choices=status_choice, blank=False, default='публичная')
 
